@@ -125,7 +125,7 @@ module Mongoid
           # @since 3.0.10
           def destroy(parent, relation, doc)
             doc.flagged_for_destroy = true
-            if !doc.embedded? || parent.new_record?
+            if false # !doc.embedded? || parent.new_record?
               destroy_document(relation, doc)
             else
               parent.flagged_destroys.push(->{ destroy_document(relation, doc) })
@@ -161,7 +161,7 @@ module Mongoid
           # @since 3.0.10
           def update_document(doc, attrs)
             attrs.delete_id
-            if metadata.embedded?
+            if true # metadata.embedded?
               doc.assign_attributes(attrs)
             else
               doc.update_attributes(attrs)
